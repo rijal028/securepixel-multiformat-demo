@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SecurePixel - Robust JPEG Mid-Frequency Hardware Provenance</title>
+  <title>SecurePixel - Pure PNG Hardware Provenance Demo</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen p-4 md:p-8">
@@ -12,17 +12,17 @@
     <!-- Header -->
     <header class="text-center space-y-2 border-b border-slate-800 pb-5">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/30 text-cyan-400 text-xs font-semibold uppercase tracking-wider">
-        <span>●</span> Robust JPEG DCT Mid-Frequency Provenance
+        <span>●</span> Lossless PNG Sensor Provenance
       </div>
-      <h1 class="text-3xl font-extrabold text-white">SecurePixel Live Demo (JPEG / DCT Mid-Freq)</h1>
+      <h1 class="text-3xl font-extrabold text-white">SecurePixel Live Demo (PNG Only)</h1>
       <p class="text-slate-400 text-xs max-w-xl mx-auto">
-        Simulating camera sensor-level steganographic sealing on DCT 8x8 Mid-Frequency gradations with Supabase Notary verification. Kebal kompresi JPEG.
+        Simulating camera sensor-level steganographic sealing on lossless PNG frames with Supabase Notary verification.
       </p>
     </header>
 
     <!-- LIVE STATUS NOTIFIER -->
     <div id="systemLog" class="p-3 bg-slate-900 border border-slate-800 rounded-lg text-xs font-mono text-cyan-300">
-      System Ready. Please select an Image file in Section 1.
+      System Ready. Please select a PNG file in Section 1.
     </div>
 
     <!-- STEP 1: CAPTURE & SEAL SIMULATOR -->
@@ -30,32 +30,32 @@
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <h2 class="text-base font-bold text-cyan-400 flex items-center gap-2">
           <span class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 text-xs flex items-center justify-center border border-cyan-500/40">1</span>
-          Camera Simulator: Capture & Seal JPEG
+          Camera Simulator: Capture & Seal PNG
         </h2>
-        <span class="text-xs text-slate-500">DCT 8x8 Mid-Frequency</span>
+        <span class="text-xs text-slate-500">Lossless Frame Only</span>
       </div>
 
       <div class="grid md:grid-cols-2 gap-6 items-start">
         <div class="space-y-3">
-          <label class="block text-xs font-semibold text-slate-300">Select Raw Image File (PNG/JPG):</label>
-          <input type="file" id="rawFileInput" accept="image/*" class="w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-cyan-400 hover:file:bg-slate-700 cursor-pointer border border-slate-700 rounded-lg p-1 bg-slate-950" />
+          <label class="block text-xs font-semibold text-slate-300">Select Raw PNG File:</label>
+          <input type="file" id="rawFileInput" accept=".png,image/png" class="w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-cyan-400 hover:file:bg-slate-700 cursor-pointer border border-slate-700 rounded-lg p-1 bg-slate-950" />
           
           <button id="btnSeal" class="w-full py-2.5 px-4 bg-cyan-500 hover:bg-cyan-400 font-bold text-xs tracking-wider uppercase text-slate-950 rounded-lg transition-all cursor-pointer">
-            🔒 Apply Hardware Provenance Seal (DCT Mid)
+            🔒 Apply Hardware Provenance Seal
           </button>
         </div>
 
         <div class="bg-slate-950 border border-slate-800 rounded-lg p-4 min-h-[140px] flex flex-col justify-center items-center text-center">
           <canvas id="previewCanvas" class="max-h-36 rounded shadow-md hidden mb-2"></canvas>
-          <div id="sealStatusPlaceholder" class="text-xs text-slate-600">Sealed JPEG preview will appear here.</div>
+          <div id="sealStatusPlaceholder" class="text-xs text-slate-600">Sealed PNG preview will appear here.</div>
           <div id="sealResultDetails" class="hidden w-full text-left space-y-2 text-xs">
             <div class="p-2.5 bg-emerald-950/40 border border-emerald-500/30 rounded text-emerald-400 font-mono text-[11px] space-y-1">
-              <div>🟢 <strong>STATUS:</strong> Media Sealed in Mid-Frequency!</div>
+              <div>🟢 <strong>STATUS:</strong> Media Sealed Successfully!</div>
               <div>🔑 <strong>Master Seed:</strong> <span id="resMasterSeed" class="text-white font-bold"></span></div>
               <div id="supabaseStatus" class="text-slate-300 text-[10px]">⚡ Syncing to Supabase...</div>
             </div>
-            <a id="btnDownloadSealed" class="block text-center py-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 font-semibold rounded text-xs border border-slate-700 transition cursor-pointer">
-              ⬇️ Download Sealed JPEG (.jpg)
+            <a id="btnDownloadSealed" class="block text-center py-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 font-semibold rounded text-xs border border-slate-700 transition">
+              ⬇️ Download Sealed PNG
             </a>
           </div>
         </div>
@@ -69,13 +69,13 @@
           <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 text-xs flex items-center justify-center border border-emerald-500/40">2</span>
           Independent Digital Notary Verifier
         </h2>
-        <span class="text-xs text-slate-500">JPEG Integrity Checker</span>
+        <span class="text-xs text-slate-500">PNG Integrity Checker</span>
       </div>
 
       <div class="grid md:grid-cols-2 gap-6 items-start">
         <div class="space-y-3">
-          <label class="block text-xs font-semibold text-slate-300">Select JPEG to Audit:</label>
-          <input type="file" id="auditFileInput" accept="image/*" class="w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-emerald-400 hover:file:bg-slate-700 cursor-pointer border border-slate-700 rounded-lg p-1 bg-slate-950" />
+          <label class="block text-xs font-semibold text-slate-300">Select PNG to Audit:</label>
+          <input type="file" id="auditFileInput" accept=".png,image/png" class="w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-emerald-400 hover:file:bg-slate-700 cursor-pointer border border-slate-700 rounded-lg p-1 bg-slate-950" />
           
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1">Target Master Seed:</label>
@@ -104,6 +104,7 @@
       document.getElementById('systemLog').innerText = "» " + msg;
     }
 
+    // Direct REST API for Supabase (No external script needed)
     async function insertSeedToSupabase(record) {
       try {
         const response = await fetch(`${SUPABASE_URL}/rest/v1/seeds`, {
@@ -141,6 +142,7 @@
       }
     }
 
+    // PRNG LCG
     function createPRNG(seed) {
       let state = seed % 2147483647;
       if (state <= 0) state += 2147483646;
@@ -150,6 +152,7 @@
       };
     }
 
+    // Native Hash Sub-Seed
     function deriveSubSeed(masterSeed, key) {
       let str = masterSeed + "_" + key;
       let hash = 0;
@@ -159,67 +162,9 @@
       return Math.abs(hash);
     }
 
-    // 15 Koefisien Mid-Frequency (Gradasi) pada blok DCT 8x8
-    const ZIGZAG_MID = [
-      [3,0], [2,1], [1,2], [0,3],
-      [0,4], [1,3], [2,2], [3,1], [4,0],
-      [5,0], [4,1], [3,2], [2,3], [1,4], [0,5]
-    ];
-    const DELTA_QIM = 22.0;
-
-    function forwardDCT8x8(block) {
-      let dct = Array.from({length: 8}, () => new Float64Array(8));
-      for (let u = 0; u < 8; u++) {
-        for (let v = 0; v < 8; v++) {
-          let sum = 0.0;
-          let cu = (u === 0) ? (1 / Math.sqrt(2)) : 1.0;
-          let cv = (v === 0) ? (1 / Math.sqrt(2)) : 1.0;
-          for (let x = 0; x < 8; x++) {
-            for (let y = 0; y < 8; y++) {
-              sum += block[x][y] * Math.cos(((2 * x + 1) * u * Math.PI) / 16) * Math.cos(((2 * y + 1) * v * Math.PI) / 16);
-            }
-          }
-          dct[u][v] = 0.25 * cu * cv * sum;
-        }
-      }
-      return dct;
-    }
-
-    function inverseDCT8x8(dct) {
-      let block = Array.from({length: 8}, () => new Float64Array(8));
-      for (let x = 0; x < 8; x++) {
-        for (let y = 0; y < 8; y++) {
-          let sum = 0.0;
-          for (let u = 0; u < 8; u++) {
-            for (let v = 0; v < 8; v++) {
-              let cu = (u === 0) ? (1 / Math.sqrt(2)) : 1.0;
-              let cv = (v === 0) ? (1 / Math.sqrt(2)) : 1.0;
-              sum += cu * cv * dct[u][v] * Math.cos(((2 * x + 1) * u * Math.PI) / 16) * Math.cos(((2 * y + 1) * v * Math.PI) / 16);
-            }
-          }
-          block[x][y] = 0.25 * sum;
-        }
-      }
-      return block;
-    }
-
-    function quantizeQIM(val, bit, delta) {
-      let step = Math.round(val / delta);
-      if (bit === 1) {
-        return (step % 2 === 0 ? step + 1 : step) * delta;
-      } else {
-        return (step % 2 !== 0 ? step + 1 : step) * delta;
-      }
-    }
-
-    function extractQIM(val, delta) {
-      let step = Math.round(val / delta);
-      return Math.abs(step % 2);
-    }
-
     let rawImg = null;
     let auditImg = null;
-    const SCATTER_RATIO = 0.15;
+    const SCATTER_RATIO = 0.05;
 
     const rawInput = document.getElementById('rawFileInput');
     const auditInput = document.getElementById('auditFileInput');
@@ -234,88 +179,71 @@
     const btnDownload = document.getElementById('btnDownloadSealed');
     const auditResultBox = document.getElementById('auditResultBox');
 
+    // Handle File Input 1
     rawInput.addEventListener('change', function(e) {
       const file = e.target.files[0];
       if (!file) return;
 
-      log("Loading Image: " + file.name);
+      if (!file.name.toLowerCase().endsWith('.png')) {
+        alert("Pilih file PNG murni!");
+        rawInput.value = "";
+        return;
+      }
+
+      log("Loading PNG: " + file.name);
       const reader = new FileReader();
       reader.onload = function(evt) {
         rawImg = new Image();
         rawImg.onload = function() {
-          log("Image loaded (" + rawImg.width + "x" + rawImg.height + "). Ready to Seal.");
+          log("PNG loaded (" + rawImg.width + "x" + rawImg.height + "). Ready to Seal.");
         };
         rawImg.src = evt.target.result;
       };
       reader.readAsDataURL(file);
     });
 
+    // Handle Sealing
     btnSeal.addEventListener('click', async function() {
       if (!rawImg) {
-        alert("Pilih file gambar terlebih dahulu!");
+        alert("Pilih file PNG terlebih dahulu!");
         return;
       }
 
-      log("Applying cryptographic DCT Mid-Frequency seal...");
+      log("Applying cryptographic LSB seal to PNG...");
       const masterSeed = Date.now();
       const ctx = previewCanvas.getContext('2d');
-      
-      const w = rawImg.width - (rawImg.width % 8);
-      const h = rawImg.height - (rawImg.height % 8);
-      previewCanvas.width = w;
-      previewCanvas.height = h;
-      ctx.drawImage(rawImg, 0, 0, w, h);
+      previewCanvas.width = rawImg.width;
+      previewCanvas.height = rawImg.height;
+      ctx.drawImage(rawImg, 0, 0);
 
-      const imgData = ctx.getImageData(0, 0, w, h);
+      const imgData = ctx.getImageData(0, 0, previewCanvas.width, previewCanvas.height);
       const data = imgData.data;
+      const totalPixels = previewCanvas.width * previewCanvas.height;
+      const numScatter = Math.floor(totalPixels * SCATTER_RATIO);
 
-      const subSeed = deriveSubSeed(masterSeed, "PHOTO_DCT");
+      const subSeed = deriveSubSeed(masterSeed, "PHOTO");
       const rng = createPRNG(subSeed);
+      const shifts = [-2, -1, 1, 2];
 
-      const totalBlocks = (w / 8) * (h / 8);
-      const numScatter = Math.floor(totalBlocks * SCATTER_RATIO);
+      for (let i = 0; i < numScatter; i++) {
+        const pixelIdx = Math.floor(rng() * totalPixels);
+        const bytePos = pixelIdx * 4;
+        const shift = shifts[Math.floor(rng() * shifts.length)];
+        const expectedLsb = shift > 0 ? 1 : 0;
 
-      for (let by = 0; by < h; by += 8) {
-        for (let bx = 0; bx < w; bx += 8) {
-          if (rng() > SCATTER_RATIO) continue;
-
-          let blockY = Array.from({length: 8}, () => new Float64Array(8));
-          for (let y = 0; y < 8; y++) {
-            for (let x = 0; x < 8; x++) {
-              let idx = ((by + y) * w + (bx + x)) * 4;
-              blockY[x][y] = (0.299 * data[idx] + 0.587 * data[idx+1] + 0.114 * data[idx+2]) - 128;
-            }
-          }
-
-          let dct = forwardDCT8x8(blockY);
-
-          for (let i = 0; i < ZIGZAG_MID.length; i++) {
-            let pos = ZIGZAG_MID[i];
-            let targetBit = rng() > 0.5 ? 1 : 0;
-            dct[pos[0]][pos[1]] = quantizeQIM(dct[pos[0]][pos[1]], targetBit, DELTA_QIM);
-          }
-
-          let newBlockY = inverseDCT8x8(dct);
-
-          for (let y = 0; y < 8; y++) {
-            for (let x = 0; x < 8; x++) {
-              let idx = ((by + y) * w + (bx + x)) * 4;
-              let deltaY = (newBlockY[x][y] + 128) - (0.299 * data[idx] + 0.587 * data[idx+1] + 0.114 * data[idx+2]);
-              data[idx] = Math.min(255, Math.max(0, data[idx] + deltaY));
-              data[idx+1] = Math.min(255, Math.max(0, data[idx+1] + deltaY));
-              data[idx+2] = Math.min(255, Math.max(0, data[idx+2] + deltaY));
-            }
-          }
-        }
+        let originalVal = data[bytePos];
+        let shiftedVal = Math.min(255, Math.max(0, originalVal + shift));
+        data[bytePos] = (shiftedVal & ~1) | expectedLsb;
       }
 
       ctx.putImageData(imgData, 0, 0);
 
+      // Async Sync to Supabase via REST
       const isSaved = await insertSeedToSupabase({
         photo_id: "IMG_" + masterSeed,
         master_seed: masterSeed,
-        width: w,
-        height: h,
+        width: previewCanvas.width,
+        height: previewCanvas.height,
         scatter_count: numScatter,
       });
 
@@ -327,37 +255,45 @@
         ? "⚡ Supabase Notary: ANCHORED (~80 Bytes)" 
         : "⚠️ Supabase Notary: Check Table RLS Permissions";
 
-      const dataUrl = previewCanvas.toDataURL("image/jpeg", 0.92);
+      const dataUrl = previewCanvas.toDataURL("image/png");
       btnDownload.href = dataUrl;
-      btnDownload.download = "IMG_" + masterSeed + ".jpg";
+      btnDownload.download = "IMG_" + masterSeed + ".png";
       auditSeedInput.value = masterSeed;
       log("Sealing complete! Master Seed: " + masterSeed);
     });
 
+    // Handle File Input 2
     auditInput.addEventListener('change', function(e) {
       const file = e.target.files[0];
       if (!file) return;
+
+      if (!file.name.toLowerCase().endsWith('.png')) {
+        alert("Pilih file PNG untuk audit!");
+        auditInput.value = "";
+        return;
+      }
 
       const match = file.name.match(/\d{12,14}/);
       if (match) {
         auditSeedInput.value = match[0];
       }
 
-      log("Loading audit Image: " + file.name);
+      log("Loading audit PNG: " + file.name);
       const reader = new FileReader();
       reader.onload = function(evt) {
         auditImg = new Image();
         auditImg.onload = function() {
-          log("Audit Image loaded. Ready to verify.");
+          log("Audit PNG loaded. Ready to verify.");
         };
         auditImg.src = evt.target.result;
       };
       reader.readAsDataURL(file);
     });
 
+    // Handle Audit
     btnAudit.addEventListener('click', async function() {
       if (!auditImg) {
-        alert("Pilih file gambar di Section 2 dulu!");
+        alert("Pilih file PNG di Section 2 dulu!");
         return;
       }
       if (!auditSeedInput.value) {
@@ -365,66 +301,49 @@
         return;
       }
 
-      log("Auditing integrity via DCT Mid-Frequency...");
+      log("Auditing integrity...");
       const inputSeed = parseInt(auditSeedInput.value.trim());
 
+      // Query Supabase via REST
       const seedRecord = await checkSeedInSupabase(inputSeed);
       const isSupabaseValid = seedRecord !== null;
 
       const tempCanvas = document.createElement('canvas');
       const ctx = tempCanvas.getContext('2d');
-      const w = auditImg.width - (auditImg.width % 8);
-      const h = auditImg.height - (auditImg.height % 8);
-      tempCanvas.width = w;
-      tempCanvas.height = h;
-      ctx.drawImage(auditImg, 0, 0, w, h);
+      tempCanvas.width = auditImg.width;
+      tempCanvas.height = auditImg.height;
+      ctx.drawImage(auditImg, 0, 0);
 
-      const imgData = ctx.getImageData(0, 0, w, h);
+      const imgData = ctx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
       const data = imgData.data;
+      const totalPixels = tempCanvas.width * tempCanvas.height;
+      const numScatter = Math.floor(totalPixels * SCATTER_RATIO);
 
-      const subSeed = deriveSubSeed(inputSeed, "PHOTO_DCT");
+      const subSeed = deriveSubSeed(inputSeed, "PHOTO");
       const rng = createPRNG(subSeed);
+      const shifts = [-2, -1, 1, 2];
 
-      let totalTestedBits = 0;
-      let matchedBits = 0;
+      let intactBits = 0;
+      for (let i = 0; i < numScatter; i++) {
+        const pixelIdx = Math.floor(rng() * totalPixels);
+        const bytePos = pixelIdx * 4;
+        const shift = shifts[Math.floor(rng() * shifts.length)];
+        const expectedLsb = shift > 0 ? 1 : 0;
 
-      for (let by = 0; by < h; by += 8) {
-        for (let bx = 0; bx < w; bx += 8) {
-          if (rng() > SCATTER_RATIO) continue;
-
-          let blockY = Array.from({length: 8}, () => new Float64Array(8));
-          for (let y = 0; y < 8; y++) {
-            for (let x = 0; x < 8; x++) {
-              let idx = ((by + y) * w + (bx + x)) * 4;
-              blockY[x][y] = (0.299 * data[idx] + 0.587 * data[idx+1] + 0.114 * data[idx+2]) - 128;
-            }
-          }
-
-          let dct = forwardDCT8x8(blockY);
-
-          for (let i = 0; i < ZIGZAG_MID.length; i++) {
-            let pos = ZIGZAG_MID[i];
-            let expectedBit = rng() > 0.5 ? 1 : 0;
-            let extractedBit = extractQIM(dct[pos[0]][pos[1]], DELTA_QIM);
-
-            if (extractedBit === expectedBit) {
-              matchedBits++;
-            }
-            totalTestedBits++;
-          }
-        }
+        const actualLsb = data[bytePos] & 1;
+        if (actualLsb === expectedLsb) intactBits++;
       }
 
-      const matchRate = (matchedBits / totalTestedBits) * 100;
+      const matchRate = (intactBits / numScatter) * 100;
       log("Audit complete. Match: " + matchRate.toFixed(2) + "%");
 
-      if (matchRate >= 80.0) {
+      if (matchRate >= 95.0) {
         auditResultBox.innerHTML = `
           <div class="p-4 bg-emerald-950/40 border border-emerald-500 rounded-lg text-left space-y-1">
-            <div class="text-emerald-400 font-bold text-sm">🟢 AUTHENTIC JPEG CAPTURE</div>
+            <div class="text-emerald-400 font-bold text-sm">🟢 AUTHENTIC PNG CAPTURE</div>
             <div class="text-white text-xs font-mono">Match Rate: <strong>${matchRate.toFixed(2)}%</strong></div>
             <div class="text-emerald-300 text-[11px] font-mono">Supabase Notary: <strong>${isSupabaseValid ? "VERIFIED IN DB" : "OFFLINE / UNANCHORED"}</strong></div>
-            <p class="text-[11px] text-slate-400 mt-1">Cryptographic Mid-Frequency seal is intact. Confirmed authentic sensor capture.</p>
+            <p class="text-[11px] text-slate-400 mt-1">Cryptographic seal is intact. Confirmed lossless sensor capture.</p>
           </div>
         `;
       } else {
@@ -432,7 +351,7 @@
           <div class="p-4 bg-rose-950/40 border border-rose-500 rounded-lg text-left space-y-1">
             <div class="text-rose-400 font-bold text-sm">🔴 TAMPERED / SEED MISMATCH</div>
             <div class="text-white text-xs font-mono">Match Rate: <strong>${matchRate.toFixed(2)}%</strong></div>
-            <p class="text-[11px] text-slate-400 mt-1">Random noise (~50%). Image is unsealed, modified, or seed does not match.</p>
+            <p class="text-[11px] text-slate-400 mt-1">Noise pattern (~50%). Image is unsealed or seed does not match.</p>
           </div>
         `;
       }
